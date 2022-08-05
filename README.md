@@ -1,6 +1,7 @@
 # Ronaco-Editor
-IDE with autocomplete, lua parser, lua sandboxing, inbuilt syntax error detection + syntax fixer &amp; live syntax highlighting
+IDE with autocomplete, lua parser, lua sandboxing, inbuilt syntax error detection + syntax fixer &amp; live syntax highlighting.
 
+Run the loadstring before calling any functions. Functions dont come out of thin air  
 Loadstring: `loadstring`
 
 ---
