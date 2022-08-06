@@ -32,6 +32,9 @@
 
 ]]
 
+----------------------------------------------------------------------
+-- Lexer Setup --
+----------------------------------------------------------------------
 
 local yield, wrap  = coroutine.yield, coroutine.wrap
 local strfind      = string.find
@@ -242,11 +245,12 @@ function scan(s)
 
 end
 
--- Theme
+----------------------------------------------------------------------
+-- Theme Setup --
+----------------------------------------------------------------------
 
-local theme = {
-	current = nil,
-	themes = {
+_G.Ronaco.Theme = {
+	DefaultThemes = {
 		["default"] = {
 			["keyword"] = Color3.fromRGB(248, 109, 124),
 			["builtin"] = Color3.fromRGB(84, 184, 247),
@@ -255,18 +259,12 @@ local theme = {
 			["comment"] = Color3.fromRGB(106, 106, 100),
 			["thingy"] = Color3.fromRGB(253, 251, 154)
 		},
-		["extra 2"] = {
-			["keyword"] = Color3.fromRGB(249, 36, 114),
-			["builtin"] = Color3.fromRGB(95, 209, 250),
-			["string"] = Color3.fromRGB(217, 219, 88),
-			["number"] = Color3.fromRGB(161, 118, 209),
-			["comment"] = Color3.fromRGB(116, 122, 101),
-			["thingy"] = Color3.fromRGB(248, 245, 139)
-		}
 	}
 }
 
--- Highlighter
+----------------------------------------------------------------------
+-- Highlighter Setup --
+----------------------------------------------------------------------
 
 local function ColorToFont(text, color)
 	return string.format(
@@ -280,9 +278,8 @@ end
 
 local function Highlight(textbox, source)
 	textbox.Text = ""
-
 	for tokenType, text in scan(source) do
-		local currentTheme = theme.current
+		local currentTheme = _G.Ronaco.Theme.DefaultTheme["default"]
 		local tokenCol = currentTheme[tokenType]
 
 		if tokenCol then
@@ -293,3 +290,10 @@ local function Highlight(textbox, source)
 	end
 end
 
+----------------------------------------------------------------------
+-- GUI Setup --
+----------------------------------------------------------------------
+
+local function CreateIDE(parent)
+		
+end
