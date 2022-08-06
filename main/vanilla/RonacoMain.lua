@@ -295,5 +295,69 @@ end
 ----------------------------------------------------------------------
 
 local function CreateIDE(parent)
-		
+	local EditorFrame = Instance.new("ScrollingFrame")
+	local Source = Instance.new("TextBox")
+	local Lines = Instance.new("TextLabel")
+
+	EditorFrame.Name = "EditorFrame"
+	EditorFrame.Parent = parent
+	EditorFrame.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
+	EditorFrame.BorderColor3 = Color3.fromRGB(61, 61, 61)
+	EditorFrame.Size = UDim2.new(1, 0, 1, 0)
+	EditorFrame.ZIndex = 3
+	EditorFrame.BottomImage = "rbxassetid://148970562"
+	EditorFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+	EditorFrame.HorizontalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+	EditorFrame.MidImage = "rbxassetid://148970562"
+	EditorFrame.ScrollBarThickness = 5
+	EditorFrame.TopImage = "rbxassetid://148970562"
+	EditorFrame.AutomaticCanvasSize = Enum.AutomaticSize.XY
+
+	Source.Name = "Source"
+	Source.Parent = EditorFrame
+	Source.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Source.BackgroundTransparency = 1.000
+	Source.Position = UDim2.new(0, 45, 0, 0)
+	Source.Size = UDim2.new(1, -45, 1, 0)
+	Source.ZIndex = 3
+	Source.ClearTextOnFocus = false
+	Source.Font = Enum.Font.RobotoMono
+	Source.MultiLine = true
+	Source.PlaceholderColor3 = Color3.fromRGB(204, 204, 204)
+	Source.Text = ""
+	Source.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Source.TextSize = 16.000
+	Source.TextXAlignment = Enum.TextXAlignment.Left
+	Source.TextYAlignment = Enum.TextYAlignment.Top
+	Source.AutomaticSize = Enum.AutomaticSize.XY
+
+	Lines.Name = "Lines"
+	Lines.Parent = EditorFrame
+	Lines.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Lines.BorderSizePixel = 0
+	Lines.Size = UDim2.new(0, 40, 1, 0)
+	Lines.ZIndex = 4
+	Lines.Font = Enum.Font.RobotoMono
+	Lines.Text = "1"
+	Lines.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Lines.TextSize = 16.000
+	Lines.TextYAlignment = Enum.TextYAlignment.Top
+	
+	local lines = 1
+	
+	Source.Changed:Connect(function()
+		-- Line Count	
+		local _, count = Source:gsub("\n", "")
+		if count ~= lines then
+			if count > lines then
+				Lines.Text = Lines.Text.."\n"..lines
+			elseif count < lines then
+				Lines.Text = Lines.Text:gsub(".?$","")	
+			end
+		end
+		-- Highlighting
+		Highlight(Source, Source.Text)
+	end)
+	
+	
 end
