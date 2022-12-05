@@ -3,7 +3,7 @@
     Ronaco
     (c) Ooflet 2022
 
-    - Hello skids!
+    - Hello!
 
 ]]
 
